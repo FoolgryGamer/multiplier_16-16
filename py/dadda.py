@@ -28,8 +28,9 @@ for i in range(8):
         for j in range(19):
             num[2*i+j] += 1
             item[2*i+j].append("pp{}[{}]".format(i,j))
-# for j in range(8):
-#     num[2*j] += 1
+for j in range(8):
+    num[2*j] += 1
+    item[2*j].append("sign[{}]".format(j))
 print("origin num is")
 print(num)
 for i in range(32):

@@ -6,9 +6,9 @@ module HA(
 );
 wire not_B,not_A;
 
-nand (C_out,A,B);
+nor (C_out,not_B,not_A);
 not (not_B,B);
 not (not_A,A);
-AND_OR_NOT inst(A,not_B,not_A,B,S);
+AND_OR_NOT inst(A,B,not_A,not_B,S);
 
 endmodule

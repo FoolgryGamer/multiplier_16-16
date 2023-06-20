@@ -18,7 +18,7 @@ not (not_M,M);
 
 AND_OR_NOT inst2(M,not_C_in,C_in,not_M,S);
 
-AND_OR_NOT inst3(C_in,not_M,A,B,C_out);
+AND_OR_NOT inst3(not_C_in,not_M,not_A,not_B,C_out);
 // assign C_out = (A&B) | (A&C_in) | (B&C_in);
 
 endmodule
