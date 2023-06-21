@@ -10,7 +10,7 @@ module dadda_tree(
     input [7:0] sign,
     output [31:0] out0,
     output [31:0] out1
-)
+);
 
 // stage 1
 wire [0:27] s1,c1;
