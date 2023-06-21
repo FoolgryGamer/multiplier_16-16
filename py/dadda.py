@@ -50,7 +50,7 @@ for j in range(6):
                     C_in = item[i].pop(0)
                     c = "c{}[{}]".format(j-1,index)
                     s = "s{}[{}]".format(j-1,index)
-                    print("FA f{}(.A({}),.B({}),.C_in({}).C_out({}).S({}));".format(FA,A,B,C_in,c,s))
+                    print("FA f{}(.A({}),.B({}),.C_in({}),.C_out({}),.S({}));".format(FA,A,B,C_in,c,s))
                     item[i+1].append(c)
                     item[i].append(s)
                     index += 1
@@ -62,7 +62,7 @@ for j in range(6):
                     B = item[i].pop(0)
                     c = "c{}[{}]".format(j-1,index)
                     s = "s{}[{}]".format(j-1,index)
-                    print("HA h{}(.A({}),.B({}),.C_out({}).S({}));".format(HA,A,B,c,s))
+                    print("HA h{}(.A({}),.B({}),.C_out({}),.S({}));".format(HA,A,B,c,s))
                     item[i+1].append(c)
                     item[i].append(s)
                     index += 1
@@ -74,7 +74,7 @@ for i in range(32):
 c = ""
 s = ""
 for i in range(31,-1,-1):
-    if i == 0 or i == 1:
+    if i == 1:
         c += item[i][0]+","
     else:
         c += item[i][0]+","
