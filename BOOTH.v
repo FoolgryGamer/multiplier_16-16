@@ -1,4 +1,4 @@
-module BOOTH_encoder_1_7(
+module BOOTH_1_7(
     input B_i2,
     input B_i1,
     input B_i0,
@@ -6,48 +6,57 @@ module BOOTH_encoder_1_7(
     output [16:0] P
 );
 
-wire X [16:0];
-wire X_2 [16:0];
-wire Comp [16:0];
-wire not_Comp [16:0];
-wire X_i_1 [16:0];
-wire X_i_2 [16:0];
+wire X;
+wire X_2;
+wire Comp;
+wire not_Comp;
 
-genvar i
+BOOTH_encoder_1_7 inst0(
+    .B_i2(B_i2),
+    .B_i1(B_i1),
+    .B_i0(B_i0),
+    .X(X),
+    .X_2(X_2),
+    .Comp(Comp),
+    .not_Comp(not_Comp)
+    );
+
+wire mid0,not_mid0,mid16,not_mid16;
+
+genvar i;
 generate
-    for(i=0;i<16:i=i+1)
-    begin: Part
-        BOOTH_encoder_1_7 Booth_encoder(
-        .B_i2(B_i2),
-        .B_i1(B_i1),
-        .B_i0(B_i0),
-        .X(A[i]),
-        .X_2(A[i]),
-        .Comp(Comp),
-        .not_Comp(not_Comp)
-        );
-
-        Partial_generator partial(
-            .X(X),
-            .X_2(X_2),
-            .Comp(Comp),
-            .not_Comp(not_Comp),
-            .X_i_1(X_i_1),
-            .X_i_0(X_i_0),
-            .P(P)
-        );
+    for(i=0; i<17; i=i+1) begin: part
+        if(i == 0) begin
+            nand (not_mid0,A[0],X);
+            not (mid0,not_mid0);
+            AND_OR_NOT inst1(not_mid0,not_Comp,mid0,Comp,P[0]);
+        end
+        else if(i == 16) begin
+            // nand (not_mid16,A[15],X_2);
+            // not (mid16,not_mid16);
+            // AND_OR_NOT inst2(not_mid16,not_Comp,mid16,Comp,P[16]);
+            Partial_generator partial(
+                .X(X),
+                .X_2(X_2),
+                .Comp(Comp),
+                .not_Comp(not_Comp),
+                .X_i_1(A[15]),
+                .X_i_0(A[15]),
+                .P(P[i])
+                );
+        end
+        else begin
+            Partial_generator partial(
+                .X(X),
+                .X_2(X_2),
+                .Comp(Comp),
+                .not_Comp(not_Comp),
+                .X_i_1(A[i]),
+                .X_i_0(A[i-1]),
+                .P(P[i])
+                );
+        end
     end
 endgenerate
-
-BOOTH_encoder_1_7 BOOTH_0(
-    .B_i2(),
-    .B_i1(),
-    .B_i0(),
-    .X(),
-    .X_2(),
-    .Comp(),
-    .not_Comp()
-);
-
 
 endmodule

@@ -4,6 +4,7 @@ reg B_i2,B_i1,B_i0;
 wire X,X_2,Comp;
 
 BOOTH_encoder_1_7 inst(
+// BOOTH_encoder_0 inst(
     .B_i2(B_i2),
     .B_i1(B_i1),
     .B_i0(B_i0),

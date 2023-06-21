@@ -11,7 +11,7 @@ module Partial_generator(
 wire not_output,output_sig;
 
 AND_OR_NOT inst0(X_i_1,X,X_i_0,X_2,not_output);
-assign output_sig = ~not_output;
+not (output_sig,not_output);
 AND_OR_NOT inst1(not_output,not_Comp,output_sig,Comp,P);
 
 endmodule
