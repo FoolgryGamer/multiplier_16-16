@@ -1,4 +1,4 @@
-module BOOTH_1_7(
+module BOOTH0(
     input B_i2,
     input B_i1,
     input B_i0,
@@ -14,7 +14,7 @@ wire not_Comp;
 
 assign neg = Comp;
 
-BOOTH_encoder_1_7 inst0(
+BOOTH_encoder_0 inst0(
     .B_i2(B_i2),
     .B_i1(B_i1),
     .B_i0(B_i0),
