@@ -43,8 +43,8 @@ generate
                 .X_2(X_2),
                 .Comp(Comp),
                 .not_Comp(not_Comp),
-                .X_i_1(A[15]),
-                .X_i_0(A[15]),
+                .A_i_1(A[15]),
+                .A_i_0(A[15]),
                 .P(P[i])
                 );
         end
@@ -54,8 +54,8 @@ generate
                 .X_2(X_2),
                 .Comp(Comp),
                 .not_Comp(not_Comp),
-                .X_i_1(A[i]),
-                .X_i_0(A[i-1]),
+                .A_i_1(A[i]),
+                .A_i_0(A[i-1]),
                 .P(P[i])
                 );
         end

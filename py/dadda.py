@@ -1,3 +1,16 @@
+def print_col(num):
+    a = num.copy()
+    while a[14] != 0:
+        for i in range(31,-1,-1):
+            if a[i] != 0:
+                print("⚪",end = "")
+                a[i] -= 1
+            else:
+                print("  ",end = "")
+        print("")
+    
+
+
 num = [0]*32
 FA = 0
 HA = 0
@@ -50,7 +63,7 @@ for j in range(6):
                     C_in = item[i].pop(0)
                     c = "c{}[{}]".format(j-1,index)
                     s = "s{}[{}]".format(j-1,index)
-                    print("FA f{}(.A({}),.B({}),.C_in({}),.C_out({}),.S({}));".format(FA,A,B,C_in,c,s))
+                    # print("FA f{}(.A({}),.B({}),.C_in({}),.C_out({}),.S({}));".format(FA,A,B,C_in,c,s))
                     item[i+1].append(c)
                     item[i].append(s)
                     index += 1
@@ -62,11 +75,12 @@ for j in range(6):
                     B = item[i].pop(0)
                     c = "c{}[{}]".format(j-1,index)
                     s = "s{}[{}]".format(j-1,index)
-                    print("HA h{}(.A({}),.B({}),.C_out({}),.S({}));".format(HA,A,B,c,s))
+                    # print("HA h{}(.A({}),.B({}),.C_out({}),.S({}));".format(HA,A,B,c,s))
                     item[i+1].append(c)
                     item[i].append(s)
                     index += 1
     print("the {}th num is {}".format(j,num))
+    print_col(num)
     print("the number of HA is {}, the number of FA is {}".format(HA,FA))
     
 for i in range(32):
