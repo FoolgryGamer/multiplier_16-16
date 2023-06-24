@@ -1,6 +1,6 @@
 module tb;
 
-parameter test_mode = 2'b11;
+parameter test_mode = 2'b00;
 // mode 00 random test
 // mode 01 A=0xffff,B=0xffff
 // mode 10 A=0xffff,B=random

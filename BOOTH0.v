@@ -35,9 +35,6 @@ generate
             AND_OR_NOT inst1(not_mid0,not_Comp,mid0,Comp,P[0]);
         end
         else if(i == 16) begin
-            // nand (not_mid16,A[15],X_2);
-            // not (mid16,not_mid16);
-            // AND_OR_NOT inst2(not_mid16,not_Comp,mid16,Comp,P[16]);
             Partial_generator partial(
                 .X(X),
                 .X_2(X_2),
@@ -48,7 +45,7 @@ generate
                 .P(P[i])
                 );
         end
-        else begin
+        else if(i != 16) begin
             Partial_generator partial(
                 .X(X),
                 .X_2(X_2),
