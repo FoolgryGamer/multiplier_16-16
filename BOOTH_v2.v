@@ -23,9 +23,11 @@ nor (not_X_1_X_0,B_i1,B_i0);
 AND_OR_NOT inst2(not_B_i2,X_1_X_0,B_i2,not_X_1_X_0,not_X_2);
 not (X_2,not_X_2);
 
+assign Comp = B_i2;
 // nor (X_2,X,X_0);
-AND_OR_NOT inst3(B_i2,not_B_i1,B_i2,not_B_i0,not_Comp);
-not (Comp,not_Comp);
+// AND_OR_NOT inst3(B_i2,not_B_i1,B_i2,not_B_i0,not_Comp);
+// not (Comp,not_Comp);
+not (not_Comp,Comp);
 // assign Comp = X_0 & B_i2;
 
 endmodule

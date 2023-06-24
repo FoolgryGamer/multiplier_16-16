@@ -1,8 +1,10 @@
 module tb;
 
-// reg [19:0] pp0;
-// reg [18:0] pp1,pp2,pp3,pp4,pp5,pp6;
-// reg [17:0] pp7;
+parameter test_mode = 2'b11;
+// mode 00 random test
+// mode 01 A=0xffff,B=0xffff
+// mode 10 A=0xffff,B=random
+// mode 11 A=random,B=0xffff
 
 reg signed [15:0] in0,in1;
 wire [31:0] out;
@@ -18,8 +20,19 @@ multi_top inst0(
 
 always begin
     #50
-    in0 = $random();
-    in1 = $random();
+    if(test_mode == 2'b00) begin
+        in0 = $random();
+        in1 = $random();
+    end
+    // else if(test_mode == 2'b01) begin
+    //     ;
+    // end
+    else if(test_mode == 2'b10) begin
+        in0 = $random();
+    end
+    else if(test_mode == 2'b11) begin
+        in1 = $random();
+    end
     #50
     answer_left = in0*in1;
     if(answer_left == out)
@@ -31,19 +44,30 @@ initial begin
     count = 0;
     in0 = 0;
     in1 = 0;
+    if(test_mode == 2'b01) begin
+        in0 = 16'hffff;
+        in1 = 16'hffff;
+    end
+    else if(test_mode == 2'b10) begin
+        in1 = 16'hffff;
+    end
+    else if(test_mode == 2'b11) begin
+        in0 = 16'hffff;
+    end
     right = 0;
     answer_left = 0;
-    // #50
-    // in0 = 0;
-    // in1 = 0;
-    // answer_left = in1+in0;
-    // #10
-    // in0 = 32'hffffffff;
-    // in1 = 32'hfffffffd;
-    // answer_left = in1+in0;
-    // #100
-
-    #1000000
+    if(test_mode == 2'b00) begin
+        #1000000;
+    end
+    else if(test_mode == 2'b01) begin
+        #150;
+    end
+    else if(test_mode == 2'b10) begin
+        #1000000;
+    end
+    else if(test_mode == 2'b11) begin
+        #1000000;
+    end
     $display("The right rate is %f",right/count);
     $finish;
 end
