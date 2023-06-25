@@ -40,6 +40,9 @@ for i in range(31):
 print(dadda)
 ran = [i for i in range(31)]
 j = [j for j in range(16)]
+plt.rcParams['font.sans-serif']=['SimHei']
 plt.plot(ran,num)
 plt.plot(j,dadda)
+plt.xlabel("进位链的长度")
+plt.ylabel("性能代价评估得分")
 plt.show()
